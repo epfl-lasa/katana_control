@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- send katana urdf to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find katana_simulation)/urdf/katana_lasa.urdf.xacro'" />
+
+  <!-- robot state publisher -->
+  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" />
+
+  <!-- robot state publisher -->
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" args="" >
+	<param name="use_gui" value="true"/>
+  </node >
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find katana_simulation)/rviz/katana_initial.rviz"/>
+
+</launch>
+
